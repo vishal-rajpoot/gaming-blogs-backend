@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import { sequelize } from "../config/db.js";
+import Blog from "./blogs.js";
 
 const Comment = sequelize.define(
   "Comment",
@@ -30,5 +31,7 @@ const Comment = sequelize.define(
   },
   { timestamps: true }
 );
+Comment.belongsTo(Blog, { foreignKey: "blogId" });
+Comment.hasMany(Comment, { as: "replies", foreignKey: "parentCommentId" });
 
-module.exports = Comment;
+export default Comment;

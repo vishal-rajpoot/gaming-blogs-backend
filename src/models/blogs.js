@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import { sequelize } from "../config/db.js";
+import User from "./user.js";
 
 const Blog = sequelize.define(
   "Blog",
@@ -20,4 +21,6 @@ const Blog = sequelize.define(
   { timestamps: true }
 );
 
-module.exports = Blog;
+Blog.belongsTo(User, { foreignKey: "userId", as: "author" });
+
+export default Blog;

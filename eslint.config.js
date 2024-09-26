@@ -1,6 +1,3 @@
-// import globals from "globals";
-// import pluginJs from "@eslint/js";
-
 export default [
   {
     files: ["**/*.js"],
@@ -15,5 +12,4 @@ export default [
       quotes: ["error", "double"],
     },
   },
-  // pluginJs.configs.recommended,
 ];
