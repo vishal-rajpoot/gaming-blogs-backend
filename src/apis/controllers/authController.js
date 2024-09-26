@@ -3,6 +3,7 @@ import { generateToken } from "../../config/generateToken.js";
 import { sendSuccess } from "../../utils/responseHandler.js";
 import {
   AuthenticationError,
+  BadRequestError,
   DuplicateDataError,
 } from "../../utils/appErrors.js";
 
@@ -21,17 +22,16 @@ const registerUser = async (req, res) => {
       password: hashedPassword,
       role,
     });
-
-    res.status(201).json({ message: "User registered successfully", user });
+    return sendSuccess(res, user, "User registered successfully");
   } catch (error) {
-    res.status(500).json({ message: "Registration failed", error });
+    throw new BadRequestError("Registration failed");
   }
 };
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }); // this is mongodb, need to change the function
   if (user && (await user.matchPassword(password))) {
     const data = {
       _id: user._id,
