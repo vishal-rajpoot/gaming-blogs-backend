@@ -31,7 +31,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email }); // this is mongodb, need to change the function
+  const user = await User.findOne({ email }); // this is mongodb function findOne, need to change the function
   if (user && (await user.matchPassword(password))) {
     const data = {
       _id: user._id,
