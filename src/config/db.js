@@ -23,7 +23,7 @@ const connectDB = async () => {
     logger.info("Database Connection has been established successfully.");
 
     // Sync all models that are not already in the database
-    await sequelize.sync({ force: false }); // Use { force: true } if you want to drop and recreate tables every time
+    await sequelize.sync({ force: false }); // Use { force: true } if you want to drop and recreate tables every time/ this will update and delete existing data to empty tables
 
     logger.info("All models were synchronized successfully.");
   } catch (error) {
