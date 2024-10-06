@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
     });
     return sendSuccess(res, user, "User registered successfully");
   } catch (error) {
-    throw new BadRequestError("Registration failed");
+    throw new BadRequestError(error);
   }
 };
 
